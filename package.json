@@ -1,12 +1,18 @@
 {
-    "name": "loip",
-    "version": "1.0.0",
-    "module": "src/index.ts",
+    "name": "sysloip",
+    "version": "1.0.6",
+    "main": "dist/index.js",
+    "module": "dist/index.js",
     "type": "module",
     "license": "MIT",
     "bin": {
-        "loip": "bin/index.js"
+        "sysloip": "bin/index.js"
     },
+    "files": [
+        "bin",
+        "dist",
+        "readme.md"
+    ],
     "devDependencies": {
         "@types/bun": "latest"
     },
@@ -15,6 +21,8 @@
     },
     "scripts": {
         "dev": "bun --watch src/index.ts",
-        "build": "bun build src/index.ts --outdir ./bin --target node"
+        "build": "bun build src/index.ts --outfile ./dist/index.js --target node",
+        "prepublishOnly": "npm run build",
+        "publish:package": "npm publish"
     }
 }
