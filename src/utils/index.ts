@@ -93,20 +93,17 @@ export function displaySystemInfo() {
     let userInfo = os.userInfo()
     let cpus = os.cpus()
     let totalMemory = os.totalmem()
-    let freeMemory = os.freemem()
     let totalMemoryGB = (totalMemory / (1024 * 1024 * 1024)).toFixed(2)
-    let freeMemoryGB = (freeMemory / (1024 * 1024 * 1024)).toFixed(2)
-    let osName = "?"
-
-    if (platform === "win32") {
-        osName = "Windows"
-    } 
-    else if (platform === "darwin") {
-        osName = "Mac OS"
+    let osNameByPlatform: Record<string, string> = {
+        android: "Android",
+        darwin: "Mac OS",
+        freebsd: "FreeBSD",
+        ios: "iOS",
+        openbsd: "OpenBSD",
+        linux: "Linux",
+        win32: "Windows",
     }
-    else if (platform === "linux") {
-        osName = "Linux"
-    }
+    let osName = osNameByPlatform[platform] ?? "Unknown"
 
     console.log("=== System Information ===")
     console.log(`OS: ${osName} (platform: ${platform}, release: ${release}, architecture: ${arch})`)
@@ -121,8 +118,10 @@ export function displaySystemInfo() {
  */
 export async function displayIPAddresses() {
     let ipAddressMap = getIPAddressesAndInterfacesMap()
-    let { ipv4Addresses, ipv6Addresses } = getIPAddresses()
-    
+    let allEntries = Object.values(ipAddressMap)
+    let ipv4Addresses = allEntries.filter(e => e.family === "IPv4" && !e.internal).map(e => e.address)
+    let ipv6Addresses = allEntries.filter(e => e.family === "IPv6" && !e.internal).map(e => e.address)
+
     console.log("\n=== IP Address Information ===")
     console.log("Local:")
     console.log("IPv4:")
