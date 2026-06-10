@@ -1,4 +1,3 @@
-# Local IP Info
+# Local IP Info (with some extras)
 
-loip will show you local IPv4 and IPv6 info.
-
+`loip` shows system, local IPv4, IPv6 and remote IP info.
