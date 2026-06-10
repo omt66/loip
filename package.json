@@ -1,19 +1,20 @@
 {
-  "name": "loip",
-  "module": "src/index.ts",
-  "type": "module",
-  "license": "MIT",
-  "bin": {
-    "loip": "bin/index.js"
-  },
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "scripts": {
-    "dev": "bun --watch src/index.ts",
-    "build": "bun build src/index.ts --outdir ./bin --target node"
-  }
+    "name": "loip",
+    "version": "1.0.0",
+    "module": "src/index.ts",
+    "type": "module",
+    "license": "MIT",
+    "bin": {
+        "loip": "bin/index.js"
+    },
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    },
+    "scripts": {
+        "dev": "bun --watch src/index.ts",
+        "build": "bun build src/index.ts --outdir ./bin --target node"
+    }
 }
